@@ -51,7 +51,7 @@ class Linkedlist:
 O = Linkedlist()
 print(O)
 
-#1.to convert an array to linkedlist and traverse
+#to convert an array to linkedlist and traverse
 #thru array,find length,search element
 
 class Node:
@@ -73,7 +73,7 @@ class Linkedlist:
                 temp=temp.next
             temp.next=newnode
             
-  #2.to traverse thru the array T.C: O(n)"""         
+  """to traverse thru the array T.C: O(n)"""         
     def display(self):
         cnt=0
         temp=self.head
@@ -84,7 +84,7 @@ class Linkedlist:
         print("Null")  """to end the list"""
         print(cnt)
 
-#3.to check whether an element is present or not  T.C:O(n)"""
+"""to check whether an element is present or not  T.C:O(n)"""
         
     def is_present(self,value):
         temp=self.head
