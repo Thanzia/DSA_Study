@@ -602,7 +602,46 @@ def MaxElement(self,mat,n,m,mid):
                 low=mid+1      '''else go to right column'''
         return [-1,-1]            
 
-'''T.C:  O(nlogm)  , S.C: O(1)  
+'''T.C:  O(nlogm)  , S.C: O(1)'''
+
+#pbm: sum of subarray minimums
+#Input: arr = [3,1,2,4]
+#Output: 17
+#Explanation :Subarrays are [3], [1], [2], [4], [3,1], [1,2], [2,4], [3,1,2], [1,2,4], [3,1,2,4]. 
+#Minimums are 3, 1, 2, 4, 1, 1, 2, 1, 1, 1. Sum is 17.
+
+arr=[11,81,94,43,3]
+MOD=1000000007
+n=len(arr)
+# Arrays to store counts of elements to left and right of each element
+left=[0]*n
+right=[0]*n
+
+# Calculate left counts using a stack
+stack=[]
+for i in range(n):
+    count=1
+    while stack and stack[-1][0]>arr[i]:
+        count+=stack.pop()[1]
+    left[i]=count
+    stack.append((arr[i],count))
+    
+# Calculate right counts using a stack
+stack=[]
+for i in range(n-1,-1,-1):
+    count=1
+    while stack and stack[-1][0]>=arr[i]:
+        count+=stack.pop()[1]
+    right[i]=count
+    stack.append((arr[i],count))
+    
+# Calculate contributions of each element
+contributions=[0]*n
+for i in range(n):
+    contributions[i]=arr[i]*left[i]*right[i]
+# Sum up contributions and take modulo            
+result=sum(contributions)%MOD
+print(result)
         
 
 
