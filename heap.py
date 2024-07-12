@@ -154,7 +154,7 @@ if __name__ == '__main__':
 	print(h.arr)
         # Deleting key at index 2. 
 	h.deleteKey(2)
-	print(h.arr)
+	print(h.arr+")
 	# Printing the size of the heap 
 	# after deletion. 
 	print("The current size of the heap after deletion is "
