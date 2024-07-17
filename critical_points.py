@@ -7,17 +7,17 @@ class Solution:
         if not head or not head.next:
             return [-1,-1]
         critical_points=[]
-        current=head
-        index=1
-        while current and current.next:
-            if current.val < current.next.val > (current.next.next.val if current.next.next else float('-inf')):
-                critical_points.append(index+1)
-                print(critical_points)
-            elif current.val> current.next.val<(current.next.next.val if current.next.next else float('inf')):
-                critical_points.append(index+1)
+        #critical points exists only if there is prev and next value for a node
+        prev=head
+        current=head.next
+        index=0
+        while current.next:
+            if (current.val > prev.val and current.val > current.next.val) or (current.val < prev.val and current.val < current.next.val):
+                critical_points.append(index)
                 #print(critical_points)
+                
+            prev=current
             current = current.next
-            #print(current)
             index += 1
             #print(index)
     
@@ -25,21 +25,23 @@ class Solution:
             return [-1, -1]
     
         min_distance = float('inf')
-        max_distance = float('-inf')
-        print(critical_points)
+        
+        #To find max and min distance between critical points
         for i in range(len(critical_points) - 1):
             distance = critical_points[i + 1] - critical_points[i]
             min_distance = min(min_distance, distance)
-            max_distance = max(max_distance, distance)
+        max_distance=critical_points[-1] - critical_points[0]
         print([min_distance, max_distance])
 
 head = ListNode(1)
 head.next = ListNode(3)
 head.next.next = ListNode(2)
-head.next.next.next = ListNode(5)
-head.next.next.next.next = ListNode(4)
-head.next.next.next.next.next = ListNode(7)
-head.next.next.next.next.next.next = ListNode(6)
+head.next.next.next = ListNode(2)
+head.next.next.next.next = ListNode(3)
+head.next.next.next.next.next = ListNode(2)
+head.next.next.next.next.next.next = ListNode(2)
+head.next.next.next.next.next.next.next = ListNode(2)
+head.next.next.next.next.next.next.next.next = ListNode(7)
 O=Solution()
 O.nodesBetweenCriticalPoints(head)
 
