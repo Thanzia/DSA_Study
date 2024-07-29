@@ -7,6 +7,8 @@ class Solution:
             mapped_num_str += str(mapping[int(char)])
         # Convert mapped string back to integer to avoid leading zeros issues
         return int(mapped_num_str)
+
+    
     def sortJumbled(self, mapping: List[int], nums: List[int]) -> List[int]:
         # Create a list of tuples (mapped_value, original_number)
         mapped_nums = [(self.map_value(num, mapping), num) for num in nums]
