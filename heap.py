@@ -73,8 +73,9 @@ class MaxHeap:
 
 		return root 
 
-	# Increases value of key at 
-	# index 'i' to new_val. 
+	# Increases value of key at index 'i' to new_val.
+	# maximum value will always be at the root .hence bubbling-up is 
+	# used to restore heapify 
 	def increaseKey(self, i, newVal): 
 		self.arr[i] = newVal 
 		while i != 0 and self.arr[self.parent(i)] < self.arr[i]: 
@@ -113,9 +114,9 @@ class MaxHeap:
 		i = self.heapSize - 1
 		self.arr[i] = x 
 
-		# The max heap property is checked 
+		# The max heap property is checked by bubble-up approach  
 		# and if violation occurs, 
-		# it is restored. 
+		# it is restored moving from last to up upto root 
 		while i != 0 and self.arr[self.parent(i)] < self.arr[i]: 
 			temp = self.arr[i] 
 			self.arr[i] = self.arr[self.parent(i)] 
@@ -136,34 +137,29 @@ if __name__ == '__main__':
 	h.insertKey(12) 
 	h.insertKey(8) 
 	h.insertKey(2) 
-	h.insertKey(14) 
+	h.insertKey(14)
+	print(h.deleteKey(4))
 
 	# Printing the current size 
 	# of the heap. 
-	print("The current size of the heap is "
-		+ str(h.curSize()) + "\n") 
+	#print("The current size of the heap is "+ str(h.curSize()) + "\n") 
 
 	# Printing the root element which is 
 	# actually the maximum element. 
-	print("The current maximum element is " + str(h.getMax()) 
-		+ "\n")
+	#print("The current maximum element is " + str(h.getMax()) + "\n")
 
 
-	print("The current size of the heap before deletion is is "
-		+ str(h.curSize()) + "\n") 
-	print(h.arr)
+	#print("The current size of the heap before deletion is is "+ str(h.curSize()) + "\n") 
+	#print(h.arr)
         # Deleting key at index 2. 
-	h.deleteKey(2)
-	print(h.arr)
+	
+	#print(h.arr)
 	# Printing the size of the heap 
 	# after deletion. 
-	print("The current size of the heap after deletion is "
-		+ str(h.curSize()) + "\n") 
+	#print("The current size of the heap after deletion is "+ str(h.curSize()) + "\n") 
 
 	# Inserting 2 new keys into the heap. 
 	h.insertKey(15) 
 	h.insertKey(5) 
-	print("The current size of the heap is "
-		+ str(h.curSize()) + "\n") 
-	print("The current maximum element is " + str(h.getMax()) 
-		+ "\n")
+	#print("The current size of the heap is "+ str(h.curSize()) + "\n") 
+	#print("The current maximum element is " + str(h.getMax()) + "\n")
