@@ -163,3 +163,69 @@ if __name__ == '__main__':
 	h.insertKey(5) 
 	#print("The current size of the heap is "+ str(h.curSize()) + "\n") 
 	#print("The current maximum element is " + str(h.getMax()) + "\n")
+
+
+      #MIN HEAP
+	
+heap = [0 for i in range(101)]  # our heap to be used
+curr_size = 0  # current size of the heap
+
+def parent(index):
+    return (index - 1) // 2
+
+def left_child(index):
+    return 2 * index + 1
+
+def right_child(index):
+    return 2 * index + 2
+
+def heapify_up(index):
+    while index > 0 and heap[parent(index)] > heap[index]:
+        heap[parent(index)], heap[index] = heap[index], heap[parent(index)]
+        index = parent(index)
+
+def heapify_down(index):
+    smallest = index
+    left = left_child(index)
+    right = right_child(index)
+
+    if left < curr_size and heap[left] < heap[smallest]:
+        smallest = left
+    if right < curr_size and heap[right] < heap[smallest]:
+        smallest = right
+    if smallest != index:
+        heap[index], heap[smallest] = heap[smallest], heap[index]
+        heapify_down(smallest)
+        
+def insertKey (x):
+    global curr_size
+    if curr_size >= len(heap):
+        return  # Heap overflow
+    heap[curr_size] = x
+    curr_size += 1
+    heapify_up(curr_size - 1)
+
+#Function to delete a key at ith index.
+def deleteKey (i):
+    global curr_size
+    if curr_size <= 0 or i >= curr_size:
+        return  # Invalid index
+    heap[i] = heap[curr_size - 1]
+    curr_size -= 1
+    heapify_down(i)
+    heapify_up(i)
+
+#Function to extract minimum value in heap and then to store 
+#next minimum value at first index.
+def extractMin ():
+    global curr_size
+    if curr_size <= 0:
+        return -1  # Heap underflow
+    if curr_size == 1:
+        curr_size -= 1
+        return heap[0]
+    root = heap[0]
+    heap[0] = heap[curr_size - 1]
+    curr_size -= 1
+    heapify_down(0)
+    return root

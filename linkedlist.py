@@ -105,3 +105,45 @@ l1=arr_to_linkedlist(arr)
 l1.display()
 print(l1.is_present(5))
 
+#pbm: merge k sorted lists
+
+''' Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next  (refer notes)'''
+
+class Solution:
+    def merge2lists(self,head1,head2):
+        t1=head1
+        t2=head2
+        dummy=ListNode(-1)
+        temp=dummy
+
+        while(t1 is not None and t2 is not None):
+            if t1.val < t2.val:
+                temp.next=t1
+                temp=t1
+                t1=t1.next
+            else:
+                temp.next=t2
+                temp=t2
+                t2=t2.next
+        if t1:
+            temp.next=t1
+        else:
+            temp.next=t2
+        return dummy.next
+
+
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        if not lists:
+            return None
+        if len(lists)==1:
+            return lists[0]
+        head=lists[0]
+        for i in range(1,len(lists)):
+            head=self.merge2lists(head,lists[i])
+        return head
+        
+

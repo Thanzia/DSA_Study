@@ -74,7 +74,9 @@ class Binary_Tree:
 
         print()
 
-#to find the height of the tree  t.c:O(n),s.c:O(n)
+#to find the height of the tree  
+        
+ #by using recursion t.c:O(n),s.c:O(n)
         
         def maxdepth(self,root):
         if root is None:
@@ -88,6 +90,29 @@ class Binary_Tree:
                 return ldepth+1
             else:
                 return rdepth+1
+
+
+#by using level order traversing  t.c:O(n),s.c:O(n)
+
+def maxDepth(self, root):
+        if root is None:
+            return 0
+        
+        q = Queue()
+        level = 0
+        q.put(root)
+        
+        while not q.empty():
+            size = q.qsize()
+            for i in range(size):
+                front = q.get()
+                if front.left is not None:
+                    q.put(front.left)
+                if front.right is not None:
+                    q.put(front.right)
+            level += 1
+        
+        return level
 
 #INSERTION
 #function to insert element in binary tree
