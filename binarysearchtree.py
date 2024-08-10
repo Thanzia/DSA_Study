@@ -14,6 +14,16 @@ def insert(node, key):
     elif key > node.key:
         node.right = insert(node.right, key)
     return node
+
+def search(node, x):
+        if node is None:
+            return False
+        if node.data==x:
+            return True
+        elif node.data<x:
+            return search(node.right,x)
+        else:
+            return search(node.left,x)
     
 def inorder(root):
     if root:
