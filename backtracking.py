@@ -112,5 +112,22 @@ class Solution:
         if m[0][0]==1:
             self.findpathHelper(0,0,m,n,ans,'',vis)
         return ans
+
+#binary representation upto N digits with no consecutive ones
+
+
+from typing import List
+def generateString(N: int) -> List[str]:
+    def backtrack(current_str):
+        if len(current_str)==N:
+            result.append(current_str)
+            return
         
+        backtrack(current_str+'0')
+        if not current_str or current_str[-1]!='1':
+            backtrack(current_str+'1')
+    result=[]
+    backtrack('')
+    return result
+
         
